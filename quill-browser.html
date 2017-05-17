@@ -7,7 +7,7 @@
 -->
 <dom-module id="quill-browser">
   <template>
-    <style>:host {display:inline-block;color:#666}</style>
+    <style>:host {display:block}</style>
     <div id="editor"></div>
   </template>
 </dom-module>
@@ -15,7 +15,7 @@
   Polymer({
     is: "quill-browser",
     ready: function(){
-      var editor = new Quill('#editor',{});
+      var editor = new window.Quill(this.$.editor,{});
     },
   })
 </script>
