@@ -1,0 +1,21 @@
+<script src="quill-browser.js"></script>
+
+<link rel="import" href="../polymer/polymer.html">
+<!--
+  `<quill-browser></quill-browser>` n
+  @demo demo.html
+-->
+<dom-module id="quill-browser">
+  <template>
+    <style>:host {display:inline-block;color:#666}</style>
+    <div id="editor"></div>
+  </template>
+</dom-module>
+<script>
+  Polymer({
+    is: "quill-browser",
+    ready: function(){
+      var editor = new Quill('#editor',{});
+    },
+  })
+</script>
