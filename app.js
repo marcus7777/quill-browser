@@ -1,1 +1,1 @@
-var Quill = require('quill');
+window.Quill = require('quill');
