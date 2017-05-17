@@ -1,0 +1,17 @@
+{
+  "name": "quill-browser",
+  "version": "1.0.0",
+  "description": "",
+  "main": "quill-browser.html",
+  "keywords": [
+    "polymer",
+    "web-components"
+  ],
+  "dependencies": {
+    "polymer": "#1.9.1"
+  },
+  "devDependencies": {
+    "iron-test-helpers": "*",
+    "web-component-tester": "^5.0.0"
+  }
+}
