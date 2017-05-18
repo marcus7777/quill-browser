@@ -1,5 +1,4 @@
 <script src="../quill/quill.js"></script>
-<link href="../quill/quill.snow.css" rel="stylesheet">
 <link rel="import" href="../polymer/polymer.html">
 <!--
   `<quill-browser></quill-browser>` n
@@ -15,23 +14,38 @@
         height: 375px;
       }
     </style>
+    <link href$="../quill/quill.[[theme]].css" rel="stylesheet">
     <div id="editor"></div>
   </template>
 </dom-module>
 <script>
   Polymer({
     is: "quill-browser",
-    ready: function(){
+      properties:{
+      toolbar:{
+        value: [
+          [{ header: [1, 2, 3, false] }],
+          ['bold', 'italic', 'underline'],
+          ['image', 'code-block']
+        ],
+      },
+      placeholder: {
+        value: "Compose an epic..."
+      },
+      theme: {
+        value: "snow" // or 'bubble'
+      },
+      _getReady: {
+        computed: "getReady(toolbar,placeholder,theme)"
+      },
+    },
+    getReady: function(toolbar,placeholder,theme){
       var editor = new Quill(this.$.editor,{
         modules: {
-          toolbar: [
-            [{ header: [1, 2, false] }],
-            ['bold', 'italic', 'underline'],
-            ['image', 'code-block']
-          ]
-       },
-       placeholder: 'Compose an epic...',
-       theme: 'snow'  // or 'bubble'
+          toolbar: toolbar
+        },
+        placeholder: placeholder,
+        theme: 'snow'  
       });
     },
   })
