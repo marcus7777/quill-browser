@@ -51,9 +51,9 @@
       })
       editor.on('text-change', function(delta, oldDelta, source) {
         if (source == 'api') {
-          console.log("An API call triggered this change.",delta, oldDelta)
+          console.log("An API call triggered this change.")
         } else if (source == 'user') {
-          console.log("A user action triggered this change.",delta, oldDelta)
+          console.log("A user action triggered this change.",delta.diff(oldDelta))
         }
       })
     },
