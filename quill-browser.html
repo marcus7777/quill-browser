@@ -14,7 +14,9 @@
         height: 375px;
       }
     </style>
-    <link href$="../quill/quill.[[theme]].css" rel="stylesheet">
+    <template is="dom-if" if="[[theme]]">
+      <link href$="../quill/quill.[[theme]].css" rel="stylesheet">
+    </template>
     <div id="editor"></div>
   </template>
 </dom-module>
