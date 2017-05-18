@@ -53,13 +53,6 @@
         placeholder: placeholder,
         theme: theme
       })
-      editor.on('text-change', function(delta, oldDelta, source) {
-        if (source == 'api') {
-          console.log("An API call triggered this change.")
-        } else if (source == 'user') {
-          console.log("A user action triggered this change.",delta,oldDelta)
-        }
-      })
       var change
       var typingTimer
       var saveInterval = this.saveInterval
@@ -83,7 +76,7 @@
         clearTimeout(typingTimer)
         typingTimer = setTimeout(savePeriodically, saveInterval)
       }.bind(this)
-      this.quill.on('text-change', function(delta, oldDelta, theSource) {
+      editor.on('text-change', function(delta, oldDelta, theSource) {
         source = theSource
         clearTimeout(typingTimer)
         typingTimer = setTimeout(savePeriodically, saveInterval)
