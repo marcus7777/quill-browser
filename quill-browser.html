@@ -7,7 +7,14 @@
 -->
 <dom-module id="quill-browser">
   <template>
-    <style>:host {display:block}</style>
+    <style>
+      :host {
+        display:block;
+      }
+      #editor {
+        height: 375px;
+      }
+    </style>
     <div id="editor"></div>
   </template>
 </dom-module>
@@ -15,7 +22,17 @@
   Polymer({
     is: "quill-browser",
     ready: function(){
-      var editor = new window.Quill(this.$.editor,{});
+      var editor = new window.Quill(this.$.editor,{
+        modules: {
+          toolbar: [
+            [{ header: [1, 2, false] }],
+            ['bold', 'italic', 'underline'],
+            ['image', 'code-block']
+          ]
+       },
+       placeholder: 'Compose an epic...',
+       theme: 'snow'  // or 'bubble'
+      });
     },
   })
 </script>
