@@ -22,7 +22,7 @@
   Polymer({
     is: "quill-browser",
     ready: function(){
-      var editor = new window.Quill(this.$.editor,{
+      var editor = new Quill(this.$.editor,{
         modules: {
           toolbar: [
             [{ header: [1, 2, false] }],
