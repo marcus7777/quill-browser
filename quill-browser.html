@@ -40,6 +40,10 @@
       _getReady: {
         computed: "getReady(toolbar,placeholder,theme)"
       },
+      saveInterval: {
+        type: Number,
+        value: 2000,
+      },
     },
     getReady: function(toolbar,placeholder,theme){
       var editor = new Quill(this.$.editor,{
@@ -56,6 +60,41 @@
           console.log("A user action triggered this change.",delta,oldDelta)
         }
       })
+      var change
+      var typingTimer
+      var saveInterval = this.saveInterval
+      var source = "api"
+      var savePeriodically = function() {
+        if (change.length() > 0) {
+          if (this.showResults) {
+            console.log('Saving changes', change)
+          }
+          this.content = this.quill.getContents()
+          // Fire custom event change
+          if (source == "user") {
+            this.fire('change', {delta: change, content: this.content, html: this.html, entireDelta: this.quill.getContents()})
+          } else {
+            this.fire('update', {delta: change, content: this.content, html: this.html, entireDelta: this.quill.getContents()})
+          }
+          change = new Delta()
+        } else if (JSON.stringify(this.content) !== JSON.stringify(this.quill.getContents())) { // Allow changes from the Two-way   data binding system
+          this.resetContent(this.content)
+        }
+        clearTimeout(typingTimer)
+        typingTimer = setTimeout(savePeriodically, saveInterval)
+      }.bind(this)
+      this.quill.on('text-change', function(delta, oldDelta, theSource) {
+        source = theSource
+        clearTimeout(typingTimer)
+        typingTimer = setTimeout(savePeriodically, saveInterval)
+      })
+      // Check for unsaved data
+      window.onbeforeunload = function() {
+        if (change.length() > 0) {
+          return 'There are unsaved changes. Are you sure you want to leave?'
+        }
+      }
     },
+    
   })
 </script>
