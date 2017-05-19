@@ -57,7 +57,7 @@
       var typingTimer
       var saveInterval = this.saveInterval
       var source = "api"
-      var savePeriodically = function() {
+      var savePeriodically = function(delta) {
         if (change > 0) {
           if (this.showResults) {
             console.log('Saving changes', change)
@@ -65,9 +65,9 @@
           this.content = this.quill.getContents()
           // Fire custom event change
           if (source == "user") {
-            this.fire('change', {delta: change, content: this.content, html: this.html, entireDelta: this.quill.getContents()})
+            this.fire('change', {delta: change, content: editor.getContents()})
           } else {
-            this.fire('update', {delta: change, content: this.content, html: this.html, entireDelta: this.quill.getContents()})
+            this.fire('update', {delta: change, content: editor.getContents()})
           }
           change = 0
         } else if (JSON.stringify(this.content) !== JSON.stringify(this.quill.getContents())) { // Allow changes from the Two-way   data binding system
