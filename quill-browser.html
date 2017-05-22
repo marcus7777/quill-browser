@@ -62,7 +62,7 @@
           if (this.showResults) {
             console.log('Saving changes', change)
           }
-          this.content = this.quill.getContents()
+          this.content = editor.getContents()
           // Fire custom event change
           if (source == "user") {
             this.fire('change', {delta: change, content: editor.getContents()})
@@ -70,7 +70,7 @@
             this.fire('update', {delta: change, content: editor.getContents()})
           }
           change = 0
-        } else if (JSON.stringify(this.content) !== JSON.stringify(this.quill.getContents())) { // Allow changes from the Two-way   data binding system
+        } else if (JSON.stringify(this.content) !== JSON.stringify(editor.getContents())) { // Allow changes from the Two-way   data binding system
           this.resetContent(this.content)
         }
         clearTimeout(typingTimer)
