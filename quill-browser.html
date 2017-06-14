@@ -44,6 +44,10 @@
         type: Number,
         value: 2000,
       },
+      value:{
+        type:Object,
+        notify:true,
+      },
     },
     getReady: function(toolbar,placeholder,theme){
       var editor = new Quill(this.$.editor,{
