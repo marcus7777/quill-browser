@@ -69,12 +69,12 @@
           this.content = editor.getContents()
           // Fire custom event change
           if (source == "user") {
-            this.fire('change', {delta: change, content: editor.getContents()})
+            this.fire('change', {delta: change, content: this.content})
           } else {
-            this.fire('update', {delta: change, content: editor.getContents()})
+            this.fire('update', {delta: change, content: this.content})
           }
           change = 0
-          this.value = editor.getContents()
+          this.value = this.content
           
         } else if (JSON.stringify(this.content) !== JSON.stringify(editor.getContents())) { // Allow changes from the Two-way   data binding system
           this.resetContent(this.content)
