@@ -74,6 +74,8 @@
             this.fire('update', {delta: change, content: editor.getContents()})
           }
           change = 0
+          this.value = editor.getContents()
+          
         } else if (JSON.stringify(this.content) !== JSON.stringify(editor.getContents())) { // Allow changes from the Two-way   data binding system
           this.resetContent(this.content)
         }
