@@ -45,7 +45,7 @@
         value: 2000,
       },
       value:{
-        type:Object,
+        type: Object,
         notify:true,
       },
     },
@@ -94,6 +94,7 @@
           return 'There are unsaved changes. Are you sure you want to leave?'
         }
       }
+      this.value = editor.getContents()
     },
     
   })
