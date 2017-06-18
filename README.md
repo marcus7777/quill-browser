@@ -1,2 +1,2 @@
-# quill-browser
-browserify app.js > quill-browser.js
+# quill-js
+a polymer wrapper for a [quillJS](https://quilljs.com/)
