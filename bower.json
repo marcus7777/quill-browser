@@ -8,7 +8,7 @@
     "web-components"
   ],
   "dependencies": {
-    "quill": "quill",
+    "quill": "*",
     "polymer": "#1.9.1"
   },
   "devDependencies": {
