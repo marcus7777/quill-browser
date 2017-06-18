@@ -1,10 +1,10 @@
 <script src="../quill/quill.js"></script>
 <link rel="import" href="../polymer/polymer.html">
 <!--
-  `<quill-browser></quill-browser>` n
+  `<quill-js></quill-js>` Quill is a free, open source WYSIWYG editor built for the modern web.
   @demo demo.html
 -->
-<dom-module id="quill-browser">
+<dom-module id="quill-js">
   <template>
     <style>
       :host {
@@ -22,7 +22,7 @@
 </dom-module>
 <script>
   Polymer({
-    is: "quill-browser",
+    is: "quill-js",
       properties:{
       toolbar:{
         value: [
@@ -75,7 +75,6 @@
           }
           change = 0
           this.value = this.content
-          
         } else if (JSON.stringify(this.content) !== JSON.stringify(editor.getContents())) { // Allow changes from the Two-way   data binding system
           this.resetContent(this.content)
         }
@@ -96,6 +95,5 @@
       }
       this.value = editor.getContents()
     },
-    
   })
 </script>
