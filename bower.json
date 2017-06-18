@@ -1,7 +1,7 @@
 {
   "name": "quill-js",
   "version": "1.0.0",
-  "description": "",
+  "description": "a polymer wrapper for a [quillJS](https://quilljs.com/)",
   "main": "quill-js.html",
   "keywords": [
     "polymer",
