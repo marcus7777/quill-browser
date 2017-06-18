@@ -1,8 +1,8 @@
 {
-  "name": "quill-browser",
+  "name": "quill-js",
   "version": "1.0.0",
   "description": "",
-  "main": "quill-browser.html",
+  "main": "quill-js.html",
   "keywords": [
     "polymer",
     "web-components"
