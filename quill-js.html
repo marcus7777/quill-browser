@@ -63,26 +63,27 @@
       var typingTimer
       var saveInterval = this.saveInterval
       var source = "api"
+      var that = this
       var savePeriodically = function(delta) {
         if (change > 0) {
-          if (this.showResults) {
+          if (that.showResults) {
             console.log('Saving changes', change)
           }
-          this.content = editor.getContents()
+          that.content = editor.getContents()
+          that.value = that.content
           // Fire custom event change
           if (source == "user") {
-            this.fire('change', {delta: change, content: this.content})
+            that.fire('change', {delta: change, content: that.content})
           } else {
-            this.fire('update', {delta: change, content: this.content})
+            that.fire('update', {delta: change, content: that.content})
           }
           change = 0
-          this.value = this.content
-        } else if (JSON.stringify(this.content) !== JSON.stringify(editor.getContents())) { // Allow changes from the Two-way   data binding system
-          this.resetContent(this.content)
+        } else if (JSON.stringify(that.content) !== JSON.stringify(editor.getContents())) { // Allow changes from the Two-way   data binding system
+          that.resetContent(that.content)
         }
         clearTimeout(typingTimer)
         typingTimer = setTimeout(savePeriodically, saveInterval)
-      }.bind(this)
+      }
       editor.on('text-change', function(delta, oldDelta, theSource) {
         change = 1
         source = theSource
