@@ -1,7 +1,5 @@
 <script src="../quill/quill.js"></script>
 <link rel="import" href="../polymer/polymer.html">
-<link href="../quill/quill.snow.css" rel="stylesheet">
-<link href="../quill/quill.bubble.css" rel="stylesheet">
 <!--
   `<quill-js></quill-js>` Quill is a free, open source WYSIWYG editor built for the modern web.
   @demo demo.html
@@ -17,7 +15,7 @@
       }
     </style>
     <template is="dom-if" if="[[theme]]">
-      <link href$="../quill/quill.[[theme]].css" rel="stylesheet">
+      <link href$="[[quillPath]]/quill.[[theme]].css" rel="stylesheet">
     </template>
     <div id="editor"><content></content></div>
   </template>
@@ -32,6 +30,9 @@
           ['bold', 'italic', 'underline'],
           ['image', 'code-block']
         ],
+      },
+      quillPath:{
+        value: "/bower_components/quill"
       },
       placeholder: {
         value: "Compose an epic..."
