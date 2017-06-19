@@ -8,7 +8,7 @@
     "web-components"
   ],
   "dependencies": {
-    "quill": "v1.2.3",
+    "quill": "https://github.com/quilljs/quill/releases/download/v1.2.3/quill.tar.gz",
     "polymer": "#1.9.1"
   },
   "devDependencies": {
