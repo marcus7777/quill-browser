@@ -67,9 +67,6 @@
       var delta = {}
       var savePeriodically = function() {
         if (change > 0) {
-          if (that.showResults) {
-            console.log('Saving changes', delta)
-          }
           that.content = editor.getContents()
           that.value = that.content
           // Fire custom event change
