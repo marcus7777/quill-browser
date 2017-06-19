@@ -17,7 +17,7 @@
     <template is="dom-if" if="[[theme]]">
       <link href$="[[quillPath]]/quill.[[theme]].css" rel="stylesheet">
     </template>
-    <div id="editor"><content></content></div>
+    <div id="editor"><slot></slot></div>
   </template>
 </dom-module>
 <script>
