@@ -87,8 +87,7 @@
         change = 1
         delta = theDelta
         source = theSource
-        clearTimeout(typingTimer)
-        typingTimer = setTimeout(savePeriodically, saveInterval)
+        savePeriodically()
       })
       // Check for unsaved data
       window.onbeforeunload = function() {
