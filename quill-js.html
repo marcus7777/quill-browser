@@ -64,18 +64,19 @@
       var saveInterval = this.saveInterval
       var source = "api"
       var that = this
-      var savePeriodically = function(delta) {
+      var delta = {}
+      var savePeriodically = function() {
         if (change > 0) {
           if (that.showResults) {
-            console.log('Saving changes', change)
+            console.log('Saving changes', delta)
           }
           that.content = editor.getContents()
           that.value = that.content
           // Fire custom event change
           if (source == "user") {
-            that.fire('change', {delta: change, content: that.content})
+            that.fire('change', {delta: delta, content: that.content})
           } else {
-            that.fire('update', {delta: change, content: that.content})
+            that.fire('update', {delta: delta, content: that.content})
           }
           change = 0
         } else if (JSON.stringify(that.content) !== JSON.stringify(editor.getContents())) { // Allow changes from the Two-way   data binding system
@@ -84,8 +85,9 @@
         clearTimeout(typingTimer)
         typingTimer = setTimeout(savePeriodically, saveInterval)
       }
-      editor.on('text-change', function(delta, oldDelta, theSource) {
+      editor.on('text-change', function(theDelta, oldDelta, theSource) {
         change = 1
+        delta = theDelta
         source = theSource
         clearTimeout(typingTimer)
         typingTimer = setTimeout(savePeriodically, saveInterval)
