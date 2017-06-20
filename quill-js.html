@@ -25,6 +25,7 @@
     is: "quill-js",
       properties:{
       toolbar:{
+        type: Array,
         value: [
           [{ header: [1, 2, 3, false] }],
           ['bold', 'italic', 'underline'],
@@ -32,12 +33,15 @@
         ],
       },
       quillPath:{
+        type: String,
         value: "/bower_components/quill"
       },
       placeholder: {
+        type: String,
         value: "Compose an epic..."
       },
       theme: {
+        type: String,
         value: "snow" // or 'bubble'
       },
       _getReady: {
