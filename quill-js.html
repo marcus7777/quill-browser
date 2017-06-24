@@ -75,17 +75,17 @@
       var delta = {}
       var savePeriodically = function() {
         if (change > 0) {
-          that.content = editor.getContents()
-          that.value = that.content
+          that.value = editor.getContents()
           // Fire custom event change
           if (source == "user") {
-            that.fire('change', {delta: delta, content: that.content})
+            that.fire('change', {delta: delta, content: that.value})
           } else {
-            that.fire('update', {delta: delta, content: that.content})
+            that.fire('update', {delta: delta, content: that.value})
           }
           change = 0
-        } else if (JSON.stringify(that.content) !== JSON.stringify(editor.getContents())) { // Allow changes from the Two-way   data binding system
-          that.resetContent(that.content)
+        } else if (JSON.stringify(that.value) !== JSON.stringify(editor.getContents())) { // Allow changes from the Two-way   data binding system
+          that.resetContent(that.value)
+          that.fire('update', {delta: delta, content: that.value})
         }
         clearTimeout(typingTimer)
         typingTimer = setTimeout(savePeriodically, saveInterval)
