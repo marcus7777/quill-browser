@@ -77,7 +77,7 @@
       var delta = {}
       var updateCheck = function() {
         if (change > 0) {
-          that.value = editor.getContents()
+          that.value = editor.getContents().ops
           that.go = !that.go
           // Fire custom event change
           if (source == "user") {
