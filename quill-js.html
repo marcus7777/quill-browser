@@ -101,7 +101,7 @@
           return that.dirtyLeave
         }
       }
-      if (!Object.keys(this.value).length) {
+      if (!this.value || !Object.keys(this.value).length) {
         this.value = editor.getContents()
       }
     },
