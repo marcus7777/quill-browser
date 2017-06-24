@@ -55,7 +55,7 @@
         type: Object,
         notify: true,
       },
-      DirtyLeave: {
+      dirtyLeave: {
         value: 'There are unsaved changes. Are you sure you want to leave?',
       },
     },
@@ -99,7 +99,7 @@
       // Check for unsaved data
       window.onbeforeunload = function() {
         if (change > 0) {
-          return that.DirtyLeave
+          return that.dirtyLeave
         }
       }
       if (!Object.keys(this.value).length) {
