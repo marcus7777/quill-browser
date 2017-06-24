@@ -87,7 +87,7 @@
           }
           change = 0
         } else if (JSON.stringify(that.value) !== JSON.stringify(editor.getContents())) { // Allow changes from the Two-way   data binding system
-          that.resetContent(that.value)
+          editor.resetContent(that.value)
           that.fire('update', {content: that.value})
         }
         clearTimeout(typingTimer)
