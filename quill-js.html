@@ -105,7 +105,7 @@
         }
       }
       if (!this.value || !Object.keys(this.value).length) {
-        this.value = editor.getContents()
+        this.value = editor.getContents().ops
       }
     },
   })
