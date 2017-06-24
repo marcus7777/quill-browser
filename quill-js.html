@@ -51,9 +51,12 @@
         type: Number,
         value: 2000,
       },
-      value:{
+      value: {
         type: Object,
-        notify:true,
+        notify: true,
+      },
+      DirtyLeave: {
+        value: 'There are unsaved changes. Are you sure you want to leave?',
       },
     },
     getReady: function(toolbar,placeholder,theme){
@@ -96,7 +99,7 @@
       // Check for unsaved data
       window.onbeforeunload = function() {
         if (change > 0) {
-          return 'There are unsaved changes. Are you sure you want to leave?'
+          return that.DirtyLeave
         }
       }
       this.value = editor.getContents()
