@@ -45,9 +45,9 @@
         value: "snow" // or 'bubble'
       },
       _getReady: {
-        computed: "getReady(toolbar,placeholder,theme)"
+        computed: "getReady(toolbar,placeholder,theme,checkInterval)"
       },
-      saveInterval: {
+      checkInterval: {
         type: Number,
         value: 2000,
       },
@@ -59,7 +59,7 @@
         value: 'There are unsaved changes. Are you sure you want to leave?',
       },
     },
-    getReady: function(toolbar,placeholder,theme){
+    getReady: function(toolbar,placeholder,theme,checkInterval){
       var editor = new Quill(this.$.editor,{
         modules: {
           toolbar: toolbar
@@ -69,11 +69,10 @@
       })
       var change = 0
       var typingTimer
-      var saveInterval = this.saveInterval
       var source = "api"
       var that = this
       var delta = {}
-      var savePeriodically = function() {
+      var updateCheck = function() {
         if (change > 0) {
           that.value = editor.getContents()
           // Fire custom event change
@@ -85,16 +84,16 @@
           change = 0
         } else if (JSON.stringify(that.value) !== JSON.stringify(editor.getContents())) { // Allow changes from the Two-way   data binding system
           that.resetContent(that.value)
-          that.fire('update', {delta: delta, content: that.value})
+          that.fire('update', {content: that.value})
         }
         clearTimeout(typingTimer)
-        typingTimer = setTimeout(savePeriodically, saveInterval)
+        typingTimer = setTimeout(updateCheck, checkInterval)
       }
       editor.on('text-change', function(theDelta, oldDelta, theSource) {
         change = 1
         delta = theDelta
         source = theSource
-        savePeriodically()
+        updateCheck()
       })
       // Check for unsaved data
       window.onbeforeunload = function() {
