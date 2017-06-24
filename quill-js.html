@@ -29,7 +29,7 @@
         value: [
           [{ header: [1, 2, 3, false] }],
           ['bold', 'italic', 'underline'],
-          ['image', 'code-block']
+          ['link','image', 'code-block']
         ],
       },
       quillPath:{
@@ -50,6 +50,9 @@
       checkInterval: {
         type: Number,
         value: 2000,
+      },
+      go: {
+        notify: true,
       },
       value: {
         type: Object,
@@ -75,6 +78,7 @@
       var updateCheck = function() {
         if (change > 0) {
           that.value = editor.getContents()
+          that.go = !that.go
           // Fire custom event change
           if (source == "user") {
             that.fire('change', {delta: delta, content: that.value})
