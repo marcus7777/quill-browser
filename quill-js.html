@@ -102,10 +102,9 @@
           return that.DirtyLeave
         }
       }
-      if (!this.value) {
+      if (!Object.keys(this.value).length) {
         this.value = editor.getContents()
       }
-      this.content = this.value
     },
   })
 </script>
