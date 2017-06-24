@@ -86,9 +86,8 @@
             that.fire('update', {delta: delta, content: that.value})
           }
           change = 0
-        } else if (JSON.stringify(that.value) !== JSON.stringify(editor.getContents())) { // Allow changes from the Two-way   data binding system
-          editor.resetContent(that.value)
-          that.fire('update', {content: that.value})
+        } else if (JSON.stringify(that.value) !== JSON.stringify(editor.getContents().ops)) { // Allow changes from the Two-way   data binding system
+          editor.resetContent({ops: that.value})
         }
         clearTimeout(typingTimer)
         typingTimer = setTimeout(updateCheck, checkInterval)
