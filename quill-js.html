@@ -102,7 +102,9 @@
           return that.DirtyLeave
         }
       }
-      this.value = editor.getContents()
+      if (!this.value) {
+        this.value = editor.getContents()
+      }
       this.content = this.value
     },
   })
