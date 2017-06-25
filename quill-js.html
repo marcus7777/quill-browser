@@ -23,7 +23,11 @@
 <script>
   Polymer({
     is: "quill-js",
-      properties:{
+    properties:{
+      show:{
+        type: Boolean,
+        value: false,
+      },
       toolbar:{
         type: Array,
         value: [
@@ -45,7 +49,7 @@
         value: "snow" // or 'bubble'
       },
       _getReady: {
-        computed: "getReady(toolbar,placeholder,theme,checkInterval)"
+        computed: "getReady(toolbar,placeholder,theme,checkInterval, show)"
       },
       checkInterval: {
         type: Number,
@@ -62,14 +66,25 @@
         value: 'There are unsaved changes. Are you sure you want to leave?',
       },
     },
-    getReady: function(toolbar,placeholder,theme,checkInterval){
-      var editor = new Quill(this.$.editor,{
-        modules: {
-          toolbar: toolbar
-        },
-        placeholder: placeholder,
-        theme: theme
-      })
+    getReady: function(toolbar,placeholder,theme,checkInterval, show){
+      var editor
+      if (show){
+        editor = new Quill(this.$.editor,{
+          modules: {
+            toolbar: false
+          },
+          placeholder: "",
+          theme: theme,
+        }).disable()
+      } else { 
+        editor = new Quill(this.$.editor,{
+          modules: {
+            toolbar: toolbar
+          },
+          placeholder: placeholder,
+          theme: theme
+        })
+      }
       var change = 0
       var typingTimer
       var source = "api"
