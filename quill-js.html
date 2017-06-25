@@ -74,7 +74,7 @@
       var that = this
       var delta = {}
       var updateCheck = function() {
-        if (change > 0) {
+        if (!show && change > 0) {
           that.value = editor.getContents().ops
           that.go = !that.go
           // Fire custom event change
@@ -98,7 +98,8 @@
           },
           placeholder: "",
           theme: theme,
-        }).disable()
+        })
+        editor.disable()
         updateCheck() // Start checking for updates
       } else {
         editor = new Quill(this.$.editor,{
@@ -107,7 +108,8 @@
           },
           placeholder: placeholder,
           theme: theme
-        }).on('text-change', function(theDelta, oldDelta, theSource) {
+        })
+        editor.on('text-change', function(theDelta, oldDelta, theSource) {
           change = 1
           delta = theDelta
           source = theSource
