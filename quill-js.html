@@ -68,23 +68,6 @@
     },
     getReady: function(toolbar,placeholder,theme,checkInterval, show){
       var editor
-      if (show){
-        editor = new Quill(this.$.editor,{
-          modules: {
-            toolbar: false
-          },
-          placeholder: "",
-          theme: theme,
-        }).disable()
-      } else { 
-        editor = new Quill(this.$.editor,{
-          modules: {
-            toolbar: toolbar
-          },
-          placeholder: placeholder,
-          theme: theme
-        })
-      }
       var change = 0
       var typingTimer
       var source = "api"
@@ -107,12 +90,30 @@
         clearTimeout(typingTimer)
         typingTimer = setTimeout(updateCheck, checkInterval)
       }
-      editor.on('text-change', function(theDelta, oldDelta, theSource) {
-        change = 1
-        delta = theDelta
-        source = theSource
-        updateCheck()
-      })
+
+      if (show){
+        editor = new Quill(this.$.editor,{
+          modules: {
+            toolbar: false
+          },
+          placeholder: "",
+          theme: theme,
+        }).disable()
+        updateCheck() // Start checking for updates
+      } else {
+        editor = new Quill(this.$.editor,{
+          modules: {
+            toolbar: toolbar
+          },
+          placeholder: placeholder,
+          theme: theme
+        }).on('text-change', function(theDelta, oldDelta, theSource) {
+          change = 1
+          delta = theDelta
+          source = theSource
+          updateCheck()
+        })
+      }
       // Check for unsaved data
       window.onbeforeunload = function() {
         if (change > 0) {
