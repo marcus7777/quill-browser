@@ -86,7 +86,7 @@
           change = 0
         } else if (that.value && JSON.stringify(that.value) !== JSON.stringify(editor.getContents().ops)) { // Allow changes from the Two-way   data binding system
           if (Array.isArray(that.value)) {
-            editor.setContents(that.value.reduce(function(op, ops) {
+            editor.setContents(that.value.reduce(function(ops, op) {
               if (op) {
                 ops.push(op)
               } 
