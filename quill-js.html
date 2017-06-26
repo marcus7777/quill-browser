@@ -84,7 +84,7 @@
             that.fire('update', {delta: delta, content: that.value})
           }
           change = 0
-        } else if (JSON.stringify(that.value) !== JSON.stringify(editor.getContents().ops)) { // Allow changes from the Two-way   data binding system
+        } else if (that.value && JSON.stringify(that.value) !== JSON.stringify(editor.getContents().ops)) { // Allow changes from the Two-way   data binding system
           editor.setContents(that.value)
         }
         clearTimeout(typingTimer)
