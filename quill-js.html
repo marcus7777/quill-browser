@@ -130,7 +130,12 @@
         }
       }
       if (!this.value || !Object.keys(this.value).length) {
-        this.value = editor.getContents().ops
+        var doc = JSON.stringify(editor.getContents().ops)
+        if (doc !== JSON.stringify(this.value) && doc !== '[{"insert":"\n"}]') {
+          this.value = editor.getContents().ops
+        } else {
+          //??
+        }
       }
     },
   })
