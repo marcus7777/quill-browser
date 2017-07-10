@@ -121,7 +121,6 @@
           theme: theme,
         })
         editorShow.disable()
-        updateCheck() // Start checking for updates
       } else {
         editor = new Quill(this.$.editor, {
           modules: {
@@ -145,6 +144,7 @@
           }
         }
       }
+      updateCheck() // Start checking for updates
       // Check for unsaved data
       window.onbeforeunload = function() {
         if (change > 0) {
