@@ -133,19 +133,19 @@
           source = theSource
           updateCheck()
         })
+        if (!this.value || !Object.keys(this.value).length) {
+          var doc = JSON.stringify(editor.getContents().ops)
+          if (doc !== JSON.stringify(this.value) && doc !== '[{"insert":"\n"}]') {
+            this.value = editor.getContents().ops
+          } else {
+            //??
+          }
+        }
       }
       // Check for unsaved data
       window.onbeforeunload = function() {
         if (change > 0) {
           return that.dirtyLeave
-        }
-      }
-      if (!this.value || !Object.keys(this.value).length) {
-        var doc = JSON.stringify(editor.getContents().ops)
-        if (doc !== JSON.stringify(this.value) && doc !== '[{"insert":"\n"}]') {
-          this.value = editor.getContents().ops
-        } else {
-          //??
         }
       }
     },
