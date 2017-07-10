@@ -16,8 +16,13 @@
     </style>
     <template is="dom-if" if="[[theme]]">
       <link href$="[[quillPath]]/quill.[[theme]].css" rel="stylesheet">
+    </template>    
+    <template is="dom-if" if="[[show]]">
+      <div id="show"></div>
     </template>
-    <div id="editor"><slot></slot></div>
+    <template is="dom-if" if="[[!show]]">
+      <div id="editor"><slot></slot></div>
+    </template>    
   </template>
 </dom-module>
 <script>
@@ -99,7 +104,7 @@
       }
 
       if (show){
-        editor = new Quill(this.$.editor,{
+        editor = new Quill(this.$.show,{
           modules: {
             toolbar: false
           },
