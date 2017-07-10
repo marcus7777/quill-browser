@@ -17,7 +17,7 @@
     <template is="dom-if" if="[[theme]]">
       <link href$="[[quillPath]]/quill.[[theme]].css" rel="stylesheet">
     </template>    
-    <div id="show" hidden="[[!show]]"></div>
+    <div id="show"   hidden="[[!show]]"></div>
     <div id="editor" hidden="[[show]]"><slot></slot></div>
   </template>
 </dom-module>
@@ -69,6 +69,7 @@
     },
     getReady: function(toolbar,placeholder,theme,checkInterval, show){
       var editor
+      var editorShow
       var change = 0
       var typingTimer
       var source = "api"
@@ -100,14 +101,14 @@
       }
 
       if (show){
-        editor = new Quill(this.$.show, {
+        editorShow = new Quill(this.$.show, {
           modules: {
             toolbar: false
           },
           placeholder: "",
           theme: theme,
         })
-        editor.disable()
+        editorShow.disable()
         updateCheck() // Start checking for updates
       } else {
         editor = new Quill(this.$.editor, {
