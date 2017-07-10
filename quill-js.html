@@ -71,7 +71,7 @@
       var editor
       var editorShow
       var change = 0
-      var typingTimer
+      var typingTimer = {}
       var source = "api"
       var that = this
       var delta = {}
@@ -105,8 +105,8 @@
             }, []))
           }
         }
-        clearTimeout(typingTimer)
-        typingTimer = setTimeout(updateCheck, checkInterval)
+        clearTimeout(typingTimer[show+""])
+        typingTimer[show+""] = setTimeout(updateCheck, checkInterval)
       }
 
       if (show){
