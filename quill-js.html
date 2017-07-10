@@ -76,6 +76,9 @@
       var that = this
       var delta = {}
       var updateCheck = function() {
+        if (!show) {
+          debugger
+        }
         if (!show && change > 0) {
           that.value = editor.getContents().ops
           that.go = !that.go
