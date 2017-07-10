@@ -86,12 +86,21 @@
             that.fire('update', {delta: delta, content: that.value})
           }
           change = 0
-        } else if (that.value && JSON.stringify(that.value) !== JSON.stringify(editor.getContents().ops)) { // Allow changes from the Two-way   data binding system
+        } else if (show && that.value && JSON.stringify(that.value) !== JSON.stringify(editorShow.getContents().ops)) { // Allow changes from the Two-way   data binding system
+          if (Array.isArray(that.value)) {
+            editorShow.setContents(that.value.reduce(function(ops, op) {
+              if (op && Object.keys(op).length) {
+                ops.push(op)
+              } 
+              return ops
+            }, []))
+          }
+        } else if (!show && that.value && JSON.stringify(that.value) !== JSON.stringify(editor.getContents().ops)) { // Allow changes from the Two-way   data binding system
           if (Array.isArray(that.value)) {
             editor.setContents(that.value.reduce(function(ops, op) {
               if (op && Object.keys(op).length) {
                 ops.push(op)
-              } 
+              }
               return ops
             }, []))
           }
