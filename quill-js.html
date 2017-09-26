@@ -72,7 +72,9 @@
       },
     },
     testMe: function(value) {
-      console.log(JSON.stringify(value) !== JSON.stringify(this.editor.getContents().ops))
+      if (this.editor && this.editor.getContents() && this.editor.getContents().ops) {
+        console.log(JSON.stringify(value) !== JSON.stringify(this.editor.getContents().ops))
+      }
     },
     getReady: function(toolbar, placeholder, theme, checkInterval, show){
       var editor
