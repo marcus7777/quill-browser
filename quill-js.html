@@ -1,4 +1,7 @@
 <script src="../quill/quill.js"></script>
+<script src="../quill-image-drop-module/image-drop.min.js"></script>
+<script src="../quill-image-resize-module/image-resize.min.js"></script>
+
 <link rel="import" href="../polymer/polymer.html">
 <!--
   `<quill-js></quill-js>` Quill is a free, open source WYSIWYG editor built for the modern web.
@@ -123,7 +126,11 @@
       } else {
         editor = new Quill(this.$.editor, {
           modules: {
-            toolbar: toolbar
+            toolbar: toolbar,
+            imageResize: {
+              displaySize: true,
+            },
+            imageDrop: true,
           },
           placeholder: placeholder,
           theme: theme
