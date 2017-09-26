@@ -65,12 +65,16 @@
       value: {
         type: Object,
         notify: true,
+        observer: "testMe"
       },
       dirtyLeave: {
         value: 'There are unsaved changes. Are you sure you want to leave?',
       },
     },
-    getReady: function(toolbar,placeholder,theme,checkInterval, show){
+    testMe: function(value) {
+      console.log(JSON.stringify(value) !== JSON.stringify(this.editor.getContents().ops))
+    },
+    getReady: function(toolbar, placeholder, theme, checkInterval, show){
       var editor
       var editorShow
       var change = 0
@@ -124,7 +128,7 @@
         })
         editorShow.disable()
       } else {
-        editor = new Quill(this.$.editor, {
+        this.editor = new Quill(this.$.editor, {
           modules: {
             toolbar: toolbar,
             imageResize: {
@@ -135,7 +139,7 @@
           placeholder: placeholder,
           theme: theme
         })
-        editor.on('text-change', function(theDelta, oldDelta, theSource) {
+        this.editor.on('text-change', function(theDelta, oldDelta, theSource) {
           change = 1
           delta = theDelta
           source = theSource
