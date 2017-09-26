@@ -85,7 +85,7 @@
       var delta = {}
       var updateCheck = function() {
         if (!show && change > 0) {
-          that.value = this.editor.getContents().ops
+          that.value = that.editor.getContents().ops
           that.go = !that.go
           // Fire custom event change
           if (source == "user") {
@@ -105,14 +105,14 @@
           }
         } else if (!show && that.value && JSON.stringify(that.value) !== JSON.stringify(that.editor.getContents().ops)) { // Allow changes from the Two-way   data binding system
           if (Array.isArray(that.value)) {
-            var selection = this.editor.getSelection()
+            var selection = that.editor.getSelection()
             this.editor.setContents(that.value.reduce(function(ops, op) {
               if (op && Object.keys(op).length) {
                 ops.push(op)
               }
               return ops
             }, []))
-            this.editor.setSelection(selection)
+            that.editor.setSelection(selection)
           }
         }
         if (typingTimer) {
