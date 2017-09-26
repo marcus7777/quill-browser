@@ -106,7 +106,7 @@
         } else if (!show && that.value && JSON.stringify(that.value) !== JSON.stringify(that.editor.getContents().ops)) { // Allow changes from the Two-way   data binding system
           if (Array.isArray(that.value)) {
             var selection = that.editor.getSelection()
-            this.editor.setContents(that.value.reduce(function(ops, op) {
+            that.editor.setContents(that.value.reduce(function(ops, op) {
               if (op && Object.keys(op).length) {
                 ops.push(op)
               }
