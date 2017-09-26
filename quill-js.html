@@ -65,16 +65,10 @@
       value: {
         type: Object,
         notify: true,
-        observer: "testMe"
       },
       dirtyLeave: {
         value: 'There are unsaved changes. Are you sure you want to leave?',
       },
-    },
-    testMe: function(value) {
-      if (this.editor && this.editor.getContents() && this.editor.getContents().ops) {
-        console.log(JSON.stringify(value) !== JSON.stringify(this.editor.getContents().ops))
-      }
     },
     getReady: function(toolbar, placeholder, theme, checkInterval, show){
       var editorShow
