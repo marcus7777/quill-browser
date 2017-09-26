@@ -9,7 +9,9 @@
   ],
   "dependencies": {
     "quill": "https://github.com/quilljs/quill/releases/download/v1.2.3/quill.tar.gz",
-    "polymer": "#1.9.1"
+    "quill-image-resize-module":"kensnyder/quill-image-resize-module",
+    "quill-image-drop-module":"kensnyder/quill-image-drop-module",
+    "polymer": "#1.9.3"
   },
   "devDependencies": {
     "iron-test-helpers": "*",
