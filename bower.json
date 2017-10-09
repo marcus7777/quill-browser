@@ -8,7 +8,7 @@
     "web-components"
   ],
   "dependencies": {
-    "quill": "https://github.com/quilljs/quill/releases/download/v1.2.3/quill.tar.gz",
+    "quill": "https://github.com/quilljs/quill/releases/download/v1.3.3/quill.tar.gz",
     "quill-image-resize-module":"kensnyder/quill-image-resize-module",
     "quill-image-drop-module":"kensnyder/quill-image-drop-module",
     "polymer": "#~1.10.0"
