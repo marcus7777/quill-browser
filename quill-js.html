@@ -28,6 +28,10 @@
   Polymer({
     is: "quill-js",
     properties:{
+      noResize:{
+        type: Boolean,
+        value: false,
+      },
       show:{
         type: Boolean,
         value: false,
@@ -129,14 +133,20 @@
         })
         editorShow.disable()
       } else {
-        this.editor = new Quill(this.$.editor, {
-          modules: {
-            toolbar: toolbar,
-            imageResize: {
-              displaySize: true,
-            },
-            imageDrop: true,
+        var modules = {
+          toolbar: toolbar,
+          imageResize: {
+            displaySize: true,
           },
+          imageDrop: true,
+        }
+        if (this.noResize) {
+          modules = {
+            toolbar: toolbar,
+          }
+        }
+        this.editor = new Quill(this.$.editor, {
+          modules: modules,
           placeholder: placeholder,
           theme: theme
         })
