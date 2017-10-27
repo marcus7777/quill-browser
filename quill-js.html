@@ -67,6 +67,9 @@
         type: Number,
         value: 2000,
       },
+      text: {
+        notify: true,
+      },
       go: {
         notify: true,
       },
@@ -88,6 +91,7 @@
       var updateCheck = function() {
         if (!show && change > 0) {
           that.value = that.editor.getContents().ops
+          that.text = that.editor.getText()
           that.go = !that.go
           // Fire custom event change
           if (source == "user") {
