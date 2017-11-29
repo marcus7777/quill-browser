@@ -84,7 +84,7 @@
     },
     updateValue: function(a,b) {
       if (this.show) {
-        this.editor.setContents(that.value.reduce(function(ops, op) {
+        this.editor.setContents(a.reduce(function(ops, op) {
           if (op && Object.keys(op).length) {
             ops.push(op)
           }
