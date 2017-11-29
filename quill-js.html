@@ -99,35 +99,6 @@
       var source = "api"
       var that = this
       var delta = {}
-      var updateCheck = function() {
-        if (!show && change > 0) {
-          that.value = that.editor.getContents().ops
-          that.text = that.editor.getText()
-          that.go = !that.go
-          // Fire custom event change
-          if (source == "user") {
-            that.fire('change', {delta: delta, content: that.value})
-          } else {
-            that.fire('update', {delta: delta, content: that.value})
-          }
-          change = 0
-        } else if (!show && that.value && JSON.stringify(that.value) !== JSON.stringify(that.editor.getContents().ops)) { // Allow changes from the Two-way   data binding system
-          if (Array.isArray(that.value)) {
-            var selection = that.editor.getSelection()
-            that.editor.setContents(that.value.reduce(function(ops, op) {
-              if (op && Object.keys(op).length) {
-                ops.push(op)
-              }
-              return ops
-            }, []))
-            that.editor.setSelection(selection)
-          }
-        }
-        if (typingTimer) {
-          clearTimeout(typingTimer)
-        }
-        typingTimer = setTimeout(updateCheck, checkInterval)
-      }
 
       if (show){
         that.editorShow = new Quill(this.$.show, {
@@ -139,6 +110,35 @@
         })
         that.editorShow.disable()
       } else {
+        var updateCheck = function() {
+          if (!show && change > 0) {
+            that.value = that.editor.getContents().ops
+            that.text = that.editor.getText()
+            that.go = !that.go
+            // Fire custom event change
+            if (source == "user") {
+              that.fire('change', {delta: delta, content: that.value})
+            } else {
+              that.fire('update', {delta: delta, content: that.value})
+            }
+            change = 0
+          } else if (!show && that.value && JSON.stringify(that.value) !== JSON.stringify(that.editor.getContents().ops)) { // Allow changes from the Two-way   data binding system
+            if (Array.isArray(that.value)) {
+              var selection = that.editor.getSelection()
+              that.editor.setContents(that.value.reduce(function(ops, op) {
+                if (op && Object.keys(op).length) {
+                  ops.push(op)
+                }
+                return ops
+              }, []))
+              that.editor.setSelection(selection)
+            }
+          }
+          if (typingTimer) {
+            clearTimeout(typingTimer)
+          }
+          typingTimer = setTimeout(updateCheck, checkInterval)
+        }
         var modules = {
           toolbar: toolbar,
           imageResize: {
