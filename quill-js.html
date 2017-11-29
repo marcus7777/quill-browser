@@ -84,7 +84,7 @@
     },
     updateValue: function(a) {
       if (this.$.show && this.show && Array.isArray(a)) {
-        this.show.setContents(a.reduce(function(ops, op) {
+        this.$.show.setContents(a.reduce(function(ops, op) {
           if (op && Object.keys(op).length) {
             ops.push(op)
           }
