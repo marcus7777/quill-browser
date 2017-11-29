@@ -170,12 +170,12 @@
             //??
           }
         }
-      }
-      updateCheck() // Start checking for updates
-      // Check for unsaved data
-      window.onbeforeunload = function() {
-        if (change > 0) {
-          return that.dirtyLeave
+        updateCheck() // Start checking for updates
+        // Check for unsaved data
+        window.onbeforeunload = function() {
+          if (change > 0) {
+            return that.dirtyLeave
+          }
         }
       }
     },
