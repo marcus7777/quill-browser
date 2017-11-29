@@ -83,8 +83,8 @@
       },
     },
     updateValue: function(a) {
-      if (this.$.show && this.show && Array.isArray(a) && this.$.show.setContents) {
-        this.$.show.setContents(a.reduce(function(ops, op) {
+      if (this.editorShow && this.show && Array.isArray(a) && this.$.show.setContents) {
+        this.editorShow.setContents(a.reduce(function(ops, op) {
           if (op && Object.keys(op).length) {
             ops.push(op)
           }
@@ -139,14 +139,14 @@
       }
 
       if (show){
-        editorShow = new Quill(this.$.show, {
+        that.editorShow = new Quill(this.$.show, {
           modules: {
             toolbar: false
           },
           placeholder: "",
           theme: theme,
         })
-        editorShow.disable()
+        that.editorShow.disable()
       } else {
         var modules = {
           toolbar: toolbar,
