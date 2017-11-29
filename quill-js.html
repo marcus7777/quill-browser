@@ -76,10 +76,14 @@
       value: {
         type: Object,
         notify: true,
+        observer: "updateValue",
       },
       dirtyLeave: {
         value: 'There are unsaved changes. Are you sure you want to leave?',
       },
+    },
+    updateValue: function(a,b) {
+      console.log(a,b,this.show)
     },
     getReady: function(toolbar, placeholder, theme, checkInterval, show){
       var editorShow
