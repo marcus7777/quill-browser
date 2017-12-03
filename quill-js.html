@@ -84,12 +84,14 @@
     },
     updateValue: function(a) {
       if (this.show && Array.isArray(a) && this.editorShow && this.editorShow.setContents) {
-        this.editorShow.setContents(a.reduce(function(ops, op) {
-          if (op && Object.keys(op).length) {
-            ops.push(op)
-          }
-          return ops
-        }, []))
+        this.debounce("save", function () {
+          this.editorShow.setContents(a.reduce(function(ops, op) {
+            if (op && Object.keys(op).length) {
+              ops.push(op)
+            }
+            return ops
+          }, []))
+        }, 1000)
       }
     },
     getReady: function(toolbar, placeholder, theme, checkInterval, show){
