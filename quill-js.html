@@ -51,7 +51,6 @@
       editor:{
         notify:true,
         type:Object,
-        readOnly: true,
       },
       placeholder: {
         type: String,
@@ -94,6 +93,9 @@
           }, []))
         }, 1000)
       }
+    },
+    reset: function(){ 
+      this.getReady(this.toolbar, this.placeholder, this.theme, this.checkInterval, this.show)
     },
     getReady: function(toolbar, placeholder, theme, checkInterval, show){
       var editorShow
@@ -155,9 +157,9 @@
           }
         }
         this.editor = new Quill(this.$.editor, {
-          modules: modules,
           placeholder: placeholder,
-          theme: theme
+          modules: modules,
+          theme: theme,
         })
         this.editor.on('text-change', function(theDelta, oldDelta, theSource) {
           change = 1
