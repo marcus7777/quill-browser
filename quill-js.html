@@ -139,6 +139,8 @@
               }, []))
               that.editor.setSelection(selection)
             }
+          } else if (!that.editor) {
+            this.getReady(toolbar, placeholder, theme, checkInterval, show)
           }
           if (typingTimer) {
             clearTimeout(typingTimer)
