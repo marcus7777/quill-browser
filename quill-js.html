@@ -128,7 +128,7 @@
               that.fire('update', {delta: delta, content: that.value})
             }
             change = 0
-          } else if (!show && that.value && JSON.stringify(that.value) !== JSON.stringify(that.editor.getContents().ops)) { // Allow changes from the Two-way   data binding system
+          } else if (!show && that.value && that.editor && JSON.stringify(that.value) !== JSON.stringify(that.editor.getContents().ops)) { // Allow changes from the Two-way   data binding system
             if (Array.isArray(that.value)) {
               var selection = that.editor.getSelection()
               that.editor.setContents(that.value.reduce(function(ops, op) {
