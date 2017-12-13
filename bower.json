@@ -11,7 +11,7 @@
     "quill": "https://github.com/quilljs/quill/releases/download/v1.3.4/quill.tar.gz",
     "quill-image-resize-module":"kensnyder/quill-image-resize-module",
     "quill-image-drop-module":"kensnyder/quill-image-drop-module",
-    "polymer": "#~1.10.0"
+    "polymer": "#~1.11.1"
   },
   "devDependencies": {
     "iron-test-helpers": "*",
