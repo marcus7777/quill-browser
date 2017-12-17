@@ -33,6 +33,10 @@
         type: Boolean,
         value: false,
       },
+      oneWay:{
+        type: Boolean,
+        value: false,
+      },
       show:{
         type: Boolean,
         value: false,
@@ -62,7 +66,7 @@
         value: "snow" // or 'bubble'
       },
       _getReady: {
-        computed: "getReady(toolbar, placeholder, theme, checkInterval, show)"
+        computed: "getReady(toolbar, placeholder, theme, checkInterval, show, oneWay)"
       },
       checkInterval: {
         type: Number,
@@ -98,7 +102,7 @@
     reset: function(){ 
       this.getReady(this.toolbar, this.placeholder, this.theme, this.checkInterval, this.show)
     },
-    getReady: function(toolbar, placeholder, theme, checkInterval, show){
+    getReady: function(toolbar, placeholder, theme, checkInterval, show, oneWay){
       var editorShow
       var change = 0
       var typingTimer
@@ -128,7 +132,7 @@
               that.fire('update', {delta: delta, content: that.value})
             }
             change = 0
-          } else if (!show && that.value && that.editor && JSON.stringify(that.value) !== JSON.stringify(that.editor.getContents().ops)) { // Allow changes from the Two-way   data binding system
+          } else if (!oneWay && !show && that.value && that.editor && JSON.stringify(that.value) !== JSON.stringify(that.editor.getContents().ops)) { // Allow changes from the Two-way   data binding system
             if (Array.isArray(that.value)) {
               var selection = that.editor.getSelection()
               that.editor.setContents(that.value.reduce(function(ops, op) {
