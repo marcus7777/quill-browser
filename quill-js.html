@@ -125,9 +125,6 @@
         that.editorShow.disable()
       } else {
         var updateCheck = function() {
-          if (that.value) {
-            console.log(JSON.stringify(that.value))
-          }
           if (!show && change > 0) {
             that.value = that.editor.getContents().ops
             that.text = that.editor.getText()
